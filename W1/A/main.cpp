@@ -48,7 +48,7 @@ int main(int argc, char const *argv[])
             int price, quantity;
             cin >> price >> quantity;
             sum += price * quantity;
-            getline(cin, line);
+            getline(cin, line); // \n
         }
     }
 

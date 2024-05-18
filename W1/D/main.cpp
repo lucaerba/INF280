@@ -26,10 +26,8 @@ int main(int argc, char const *argv[])
     {
         //split the line
         int i = 0;
-        string date = "";
         while (line[i] != ' ')
         {
-            date += line[i];
             i++;
         }
         i++;
