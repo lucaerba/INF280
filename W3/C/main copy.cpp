@@ -6,15 +6,15 @@ using namespace std;
 
 //g++ -std=c++17 main.cpp && ./a.out
 //define filename = "sample-A.1.in"
-#define DEBUG 0
+#define DEBUG 1
 
-long B, E, P, N, M;
+int B, E, P, N, M;
 const int NB_NODES_MAX = 40000;
 const int MAX_DISTANCE = 40000;
 vector<pair<int,  int > > nxt[NB_NODES_MAX];
 vector<int> nodes_at[MAX_DISTANCE];
 
-long dist[NB_NODES_MAX];
+int dist[NB_NODES_MAX];
 
 void bfs(int start, int end, int max_distance) {
     
@@ -33,8 +33,8 @@ void bfs(int start, int end, int max_distance) {
                     }
                 }
         }
-   
 }
+
 int main(int argc, char const *argv[])
 {
     if (DEBUG)
@@ -55,42 +55,22 @@ int main(int argc, char const *argv[])
         nxt[x].push_back({y, 1});
         nxt[y].push_back({x, 1});
     }
-    
-    bfs(0, N-1, M);
-    long distcopy[N];
-    for(int i=0; i<N; i++){
-        distcopy[i] = dist[i];
-    }
-    if (DEBUG){
-        for(int i=0; i<N; i++) {
-            cout << dist[i] << endl;
-        }
-    }
-    bfs(1, N-1, M);
-    if (DEBUG){
-        for(int i=0; i<N; i++) {
-            cout << dist[i] << endl;
-        }
-    }
 
-    
+    int res_min = INT32_MAX;
+    for(int i=1; i<N-1; i++){
+        int res = 0;
 
-    long long res_min = INT32_MAX;
-    
-    for(int i=0; i<N-1; i++){
-        long long res = 0;
-        res += distcopy[i]*B;
+        bfs(0, i, M);
+        res += dist[i]*B;
         
+        bfs(1, i, M);
         res += dist[i]*E;
         
-        res += distcopy[i]<dist[i]?(distcopy[N-1]-distcopy[i])*P:(dist[N-1]-dist[i])*P;
-        
-        if(DEBUG) cout << i << " " << res << endl;
-
-        if(res < res_min)
-            res_min = res;
+        bfs(i, N-1, M);
+        res += dist[N-1]*P;
+        if(res < res_min) res_min = res;
     }
-    
+   
     cout << res_min << endl;
     return 0;
 }
