@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <set>
+#include <climits>
 
 using namespace std;
 
@@ -57,34 +58,49 @@ int main(int argc, char const *argv[])
     }
     
     bfs(0, N-1, M);
-    long distcopy[N];
+    long dist0[N];
     for(int i=0; i<N; i++){
-        distcopy[i] = dist[i];
+        dist0[i] = dist[i];
     }
     if (DEBUG){
         for(int i=0; i<N; i++) {
             cout << dist[i] << endl;
         }
+        cout << endl;
     }
     bfs(1, N-1, M);
     if (DEBUG){
         for(int i=0; i<N; i++) {
             cout << dist[i] << endl;
         }
+        cout << endl;
     }
-
+    long dist1[N];
+    for(int i=0; i<N; i++){
+        dist1[i] = dist[i];
+    }
     
-
-    long long res_min = INT32_MAX;
+    bfs(N-1, 0, M);
+    long distN[N];
+    for(int i=0; i<N; i++){
+        distN[i] = dist[i];
+    }
+    if (DEBUG){
+        for(int i=0; i<N; i++) {
+            cout << dist[i] << endl;
+        }
+        cout << endl;
+    }
+    long long res_min = LONG_MAX;
     
-    for(int i=0; i<N-1; i++){
+    for(int i=0; i<N; i++){
         long long res = 0;
-        res += distcopy[i]*B;
+        res += dist0[i]*B;
         
-        res += dist[i]*E;
+        res += dist1[i]*E;
         
-        res += distcopy[i]<dist[i]?(distcopy[N-1]-distcopy[i])*P:(dist[N-1]-dist[i])*P;
-        
+        res += distN[i]*P;
+
         if(DEBUG) cout << i << " " << res << endl;
 
         if(res < res_min)

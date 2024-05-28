@@ -1,0 +1,24 @@
+Tip 1:
+
+Consider the graph where nodes are pastures and edges are for
+cows. There are two types of edges depending on whether the cows eat
+the same types of grass or not.
+
+
+
+Tip 2:
+
+The number of ways to plant pastures corresponds to the number of ways
+to bicolor the graph. Is it always possible to bicolor the graph?  If
+you know that the first pasture is planted with the first type of
+grass, what does this imply on other pastures?
+
+
+Tip 3:
+
+There are 0 or 2 ways to color each connected component of the graph.
+For each connected component you can set any node of that component to
+a given color and propagate the constraint, you will either manage to
+color the full component or end up with a contradiction (a pasture
+that needs to be planted with two different types of grass).
+

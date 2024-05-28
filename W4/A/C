@@ -1,0 +1,17 @@
+Let us modify the problem and allow shooting a single
+asteroid. Clearly any optimal strategy in this new problem corresponds
+to an optimal strategy in the original problem.
+
+Now, consider the graph G where nodes are either (C) columns, (R) rows
+or one the two special nodes (S) and (T). In this graph there is also
+an edge from (S) to all (C), an edge from each (R) to (T) and an edge
+between the c-th column to the r-th row when there is an asteroid in
+(r,c). We claim that a S-T-cut in this graph is strategy to destroy
+all asteroids. Indeed we associate S-C-edges, resp. R-T-edges, with
+shooting the corresponding column, resp. row. For R-C-edges we
+associate them with shooting the corresponding asteroid.
+
+Clearly if we have a strategy to shoot all asteroid, it corresponds
+to a cut in this graph and what we want is a minimal cut. By
+max-flow=min-cut we just need to find a max-flow in this graph (all
+capacities are set to 1).

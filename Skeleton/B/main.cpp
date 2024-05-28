@@ -3,7 +3,7 @@
 
 using namespace std;
 
-//g++ main.cpp && ./a.out
+//g++ -std=c++17 main.cpp && ./a.out
 //define filename = "sample-A.1.in"
 #define DEBUG 1
 

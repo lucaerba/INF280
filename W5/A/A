@@ -1,0 +1,10 @@
+Given a fixed sequence S_1 ... S_N we define q(i,j) the energy to
+split S_i ... S_{j-1}. We have q(i,j) = min_k q(i,k)+q(k,j) with
+q(i,i)=q(i,i+1)=0
+
+
+There are less than N² situations (N possibles values for i and for j)
+and N transitions for each so overall complexity is N³.
+
+Beware of the types! You need to use 64 bits integers!
+
