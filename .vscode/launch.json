@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/lucaerbi/Desktop/Code/INF280/W5/A",
-      "program": "/Users/lucaerbi/Desktop/Code/INF280/W5/A/build/Debug/outDebug"
+      "cwd": "/Users/lucaerbi/Desktop/Code/INF280/W6/A",
+      "program": "/Users/lucaerbi/Desktop/Code/INF280/W6/A/build/Debug/outDebug"
     },
     {
       "name": "C/C++: g++ compilare ed eseguire il debug del file attivo",

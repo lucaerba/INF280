@@ -52,13 +52,7 @@ int main(int argc, char const *argv[])
     }
     fill(solution, solution+N, INT32_MAX);
     long ret = rec(lis, N);
-    for(int i=1; i<N; i++){
-        if(DEBUG){
-            cout << solution[i] << " " ;
-        }
-        tot += solution[i];
-    }
-    if(DEBUG) cout << endl;
+   
     cout << ret << endl;
     
     return 0;
