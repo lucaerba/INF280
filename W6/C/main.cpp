@@ -4,6 +4,9 @@
 using namespace std;
 
 #define DEBUG 1
+//g++ -std=c++17 main.cpp && ./a.out
+//define filename = "sample-A.1.in"
+
 const int MAXXY = 1000;
 int map[MAXXY+1][MAXXY+1];    
 
@@ -34,16 +37,16 @@ int main(int argc, char const *argv[])
     }
     
     // Apply prefix sums to compute the final values in the map !! prefix sums on 2D array
-    for(int i=0; i<max_x; i++){
-        for(int j=0; j<max_y; j++){
+    for(int i=0; i<=max_x; i++){
+        for(int j=0; j<=max_y; j++){
             if(i > 0) map[i][j] += map[i-1][j];
             if(j > 0) map[i][j] += map[i][j-1];
             if(i > 0 && j > 0) map[i][j] -= map[i-1][j-1];
         }
         //print the map
         if(DEBUG){
-            for(int i=0; i<max_x; i++){
-                for(int j=0; j<max_y; j++){
+            for(int i=0; i<=max_x; i++){
+                for(int j=0; j<=max_y; j++){
                     cout << map[i][j] << " ";
                 }
                 cout << endl;
@@ -54,8 +57,8 @@ int main(int argc, char const *argv[])
 
     //print the map
     if(DEBUG){
-        for(int i=0; i<max_x; i++){
-            for(int j=0; j<max_y; j++){
+        for(int i=0; i<=max_x; i++){
+            for(int j=0; j<=max_y; j++){
                 cout << map[i][j] << " ";
             }
             cout << endl;

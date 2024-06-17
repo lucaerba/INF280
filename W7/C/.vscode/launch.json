@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/lucaerbi/Desktop/Code/INF280/W7/C",
+      "program": "/Users/lucaerbi/Desktop/Code/INF280/W7/C/build/Debug/outDebug"
+    }
+  ]
+}
