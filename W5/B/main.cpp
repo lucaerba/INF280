@@ -10,15 +10,12 @@ const long MAXK = 20;
 int occurrences[3][MAXN + 1];
 long dp[MAXN + 1][3][MAXK + 1];
 
-
 // Function to calculate the wins for a given gesture range
 int wins(int left, int right, int gesture) {
     return occurrences[gesture][right] - occurrences[gesture][left - 1];
 }
 
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
 
     if (DEBUG)
         freopen("sample-B.1.in", "r", stdin);
@@ -63,6 +60,5 @@ int main() {
 
     // Output the result
     cout << max_wins << endl;
-
     return 0;
 }

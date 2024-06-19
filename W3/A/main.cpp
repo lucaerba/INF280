@@ -10,7 +10,7 @@ using namespace std;
 #define DEBUG 1
 const long long NB_NODES_MAX = 500*500;
 const int V = 500;
-vector<pair<int,  int > > nxt[NB_NODES_MAX];
+vector<pair<int,  int >> nxt[NB_NODES_MAX];
 
 const int MAX_DISTANCE = V*V;
 

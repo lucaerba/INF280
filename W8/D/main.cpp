@@ -1,64 +1,74 @@
-#include <stdio.h>
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#define DEBUG 1
-
+#include <cmath>
+#define DEBUG 0
 using namespace std;
-const int MAXN=500;
-const int MAXD=2001;
-int distances[MAXN][MAXN];
 
-//g++ -std=c++17 main.cpp && ./a.out
-int distance(pair<int, int> p1, pair<int, int> p2){
-    return abs(p1.first - p2.first)+abs(p1.second - p2.second);
+const int MAXN = 500;
+
+
+int dp[MAXN][MAXN];
+vector<pair<int, int>> points;
+
+int dist(pair<int, int> a, pair<int, int> b) {
+    return abs(a.first - b.first) + abs(a.second - b.second);
 }
-int main(){
-    if(DEBUG){
-        freopen("sample-D.1.in", "r",stdin);
-    }
-    
+
+int main() {
+    // Redirecting input for debugging purposes
+    if( DEBUG)
+        freopen("sample-D.1.in", "r", stdin);
+        
+
     int N, K;
-
     cin >> N >> K;
-    vector<pair<pair<int,int>, pair<int, int>>> points;
-    int x,y;
-    cin >> x >> y;
-    points.push_back({{x,y}, {0, 0}});
-    for(int i=1; i<N; i++){
-        int x,y;
+    if(DEBUG)
+        cout << N << " " << K << endl;
+
+    for (int i = 0; i < N; i++) {
+        int x, y;
         cin >> x >> y;
-        points.push_back({{x,y}, {distance({x,y}, points.at(i-1).first), i}});
-        if(DEBUG) cout << x <<" " << y <<endl;
+        points.push_back({x, y});
     }
 
-
-    //look for most distant points
-    
-    vector<pair<pair<int,int>, pair<int, int>>> points_sorted = points;
-    sort(points_sorted.begin(), points_sorted.end(), 
-        [](const pair<pair<int,int>, pair<int, int>>& p1,  const pair<pair<int,int>, pair<int, int>>& p2){
-            return p1.second.first - p2.second.first;
-        });
-    
-    //try to remove K points
-    for(int i=0; i<K; i++){
-        if(DEBUG){
-            cout << points_sorted.at(i).first.first << " " <<points_sorted.at(i).first.second << " " << points_sorted.at(i).second.first << endl;
-        }
-        points.erase(points_sorted.begin()+points_sorted.at(i).second.second);
-    }
-    int nres = points.size();
-    long res =0;
-    for(int i=0; i<nres; i++){
-        if(i+1 < nres){
-            res += distance(points.at(i).first, points.at(i+1).first); 
+    // Initialize DP table
+    for (int i = 0; i < MAXN; i++) {
+        for (int j = 0; j < MAXN; j++) {
+            dp[i][j] = INT32_MAX;
         }
     }
 
-    cout << res << endl;
+    dp[0][0] = 0;  // Starting point
 
-    
+    for (int i = 0; i < N; i++) {
+        for (int k = 0; k <= K; k++) {
+            if (dp[i][k] == INT32_MAX)
+                continue;
+
+            for (int j = i + 1; j < N && j <= i + 1 + K; j++) {
+                int new_k = k + (j - i - 1);
+                if (new_k <= K) {
+                    dp[j][new_k] = min(dp[j][new_k], // distance to new point removing the i distance 
+                                dp[i][k] + dist(points[i], points[j])); // distance to new point adding the i distance
+                }
+            }
+        }
+    }
+    if(DEBUG) {
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j <= K; j++) {
+                cout << dp[i][j] << " ";
+            }
+            cout << endl;
+        }
+    }
+    int ans = INT32_MAX;
+    for (int k = 0; k <= K; k++) {
+        ans = min(ans, dp[N - 1][k]);
+    }
+
+    cout << ans << endl;
+
     return 0;
-
 }

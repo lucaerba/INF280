@@ -56,7 +56,11 @@ int main() {
     int maxEarnings = 0;
     //considering we have to go back to the moon base
     for (int i = 1; i <= N; ++i) {
-        maxEarnings = max(maxEarnings, dp[i][maxDays] - C * maxDays * maxDays);
+        if (i == 1) { // Assuming node 1 is the moon base
+            maxEarnings = max(maxEarnings, dp[i][maxDays] - C * maxDays * maxDays);
+        } else {
+            maxEarnings = max(maxEarnings, dp[i][maxDays]);
+        }
     }
 
     cout << maxEarnings << endl;
