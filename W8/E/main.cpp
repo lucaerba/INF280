@@ -14,7 +14,6 @@ int convertToDecimal(const string& sequence, int base) {
 int main() {
     if(DEBUG){
         freopen("sample-E.1.in", "r", stdin);
-
     }  
     int K;
     cin >> K;
