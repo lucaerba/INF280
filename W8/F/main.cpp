@@ -16,7 +16,7 @@ int seen[NB_NODE_MAX];
 int n_visited;
 set<pair<long, int>> good;
 //create a matrix to save the max number of nodes reachable from each node until that moment
-int max_nodes[MAX*MAX];
+long max_nodes[MAX*MAX];
 
 vector<int> visited;
 void bfs(pair<int, int> start, int T, int max_difficulty)
@@ -178,7 +178,10 @@ int main()
       }
     }
     for(auto v: visited){
-      max_nodes[v] = max_difficulty;
+      if(max_nodes[v] != -1)
+        max_nodes[v] = min(max_nodes[v], max_difficulty);
+      else
+        max_nodes[v] = max_difficulty;
     }
     visited.clear();
     sum_difficulty += max_difficulty;
